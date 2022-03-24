@@ -58,3 +58,9 @@ Please make sure to update tests as appropriate.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+<style type="text/css">
+    img {
+        width: 250px;
+    }
+</style>
