@@ -1,6 +1,5 @@
 
 import random
-from core.data import Data
 import math
 
 
@@ -141,3 +140,26 @@ class Bpnn:
             mse.append(mse_value)
             fitness.append(fitness_value)
         return {'fitness': fitness, 'update_chromosom': is_update_chromosom}
+
+    def testing(self, best_chromosome, X_test, y_test):
+        newron = best_chromosome['input_hidden']['newron']
+        bias_input = best_chromosome['input_hidden']['bias']
+        weight = best_chromosome['output_hidden']['weight']
+        bias_output = best_chromosome['output_hidden']['bias']
+        testing = []
+        for key, val in enumerate(X_test):
+            z_in = []
+            z = []
+            for k, v in enumerate(newron):
+                z_in_value = self.valueOf(val, v, bias_input[k])
+                z_in.append(z_in_value)
+                z_value = 1/(1+math.exp(-z_in_value))
+                z.append(z_value)
+            y_in_value = self.valueOf(z, weight, bias_output)
+            y_in = y_in_value
+            y_value = 1/(1+math.exp(-y_in))
+            y = y_value
+            mse = (pow(y-float(y_test[key]), 2)/2)
+            testing.append(
+                {'predict': y, 'target': float(y_test[key]), 'mse': mse})
+        return testing

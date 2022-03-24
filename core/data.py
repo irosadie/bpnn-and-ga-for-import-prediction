@@ -75,6 +75,9 @@ class Data:
         norm_data = np.array(norm_data)
         return {'min': float(is_min), 'max': float(is_max), 'data_ori': data, 'data_norm': norm_data.tolist()}
 
+    def singleDenormalization(self, value: float, min_max: list):
+        return (((value-0.1)*(min_max[1]-min_max[0]))/0.8)+min_max[0]
+
     def dataSplit(self, data, code, shuffle=0):
         data = np.array(data)
         params_ = data[:, 0:(data.shape[1]-1)]
