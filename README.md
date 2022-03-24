@@ -22,6 +22,12 @@ in your command or running
 ```bash
 ./serve.bat
 ```
+then, access your IP using port 5000
+
+```
+http://127.0.0.1:5000/
+```
+
 ## API Endpoint
 Please using postman and import collection from:
 ```
